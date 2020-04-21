@@ -18,3 +18,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
 
+let request_routes = require('./api/routes/RequestRoutes');
+request_routes(app);
+
