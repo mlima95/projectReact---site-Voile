@@ -18,3 +18,5 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
 
+var Users = require('../server/api/routes/UsersRoutes')
+app.use('/users', Users)

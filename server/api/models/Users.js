@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UsersSchema = new Schema({
-  Fistname: { 
+  Firstname: { 
     type: String, required: 'Kindly enter a firstname'
   },
   Lastname: { 
@@ -12,7 +12,7 @@ var UsersSchema = new Schema({
     type: String, required: 'Kindly enter a number'
   },
   Gender: {
-    type: String, default: Date.now
+    type: String,
   },
   Birthday: {
     type: Date,
