@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:3000';
 export {BASE_URL, login, getRessources, getRessource, updateRessource, createRessource, deleteRessource};
 
 function login(data) {
-  const url = `${BASE_URL}/login`;
+  const url = `${BASE_URL}/users/login`;
   return axios.post(url, data).then((response) => response.data);
 }
 

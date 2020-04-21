@@ -4,6 +4,8 @@ import Navbar from "../screens/Navbar";
 import Calendar from "../screens/Calendar";
 import Login from '../screens/Login';
 import Request from '../screens/Request';
+import Profile from '../screens/Profile';
+import Register from '../screens/Register';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function AppRouter(props) {
@@ -14,6 +16,12 @@ export default function AppRouter(props) {
             <Switch>
                 <Route path='/login'>
                     <Login />
+                </Route>
+                <Route path='/register'>
+                    <Register />
+                </Route>
+                <Route path='/profile'>
+                    <Profile />
                 </Route>
                 <Route path='/request'>
                     <Request />
