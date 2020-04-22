@@ -1,46 +1,64 @@
-import React, {Component} from 'react'
-import { login } from '../services/api_services'
+import React from 'react';
+import { connect } from 'react-redux';
+import { onConnect } from '../store/actions/userActions';
+import { login } from '../services/api_services';
 
-class Login extends Component {
-    constructor(){
-        super()
-        this.state = {
-            Email: "",
-            Password: "",
+const crypto = require("crypto");
 
-        }
-        this.onChange = this.onChange.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+class Login extends React.Component {
+    
+    constructor(props){
+        super(props)
+        this.state={email:"", password:""}
     }
+
     onChange(e){
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.name]:e.target.value});
     }
-    onSubmit(e){
-        e.preventDefault()
 
-        const user = {
-            Email: this.state.Email,
-            Password: this.state.Password
-        }
-        login(user).then(res => {
-            if(res){
-                window.location= "/profile";
-            }
-        })
+    encodedPassword(){
+        return crypto.createHash("sha512").update(this.state.password.trim()).digest("base64");
     }
-    render(){
-        return (
-            <div className="container">
-                <div className="row">
-                  <form noValidate onSubmit={this.onSubmit}>
-                      <input type="email" name="Email" placeholder="Enter email" value={this.state.email} onChange={this.onChange}></input>
-                      <input type="password" name="Password" placeholder="Enter password" value={this.state.password} onChange={this.onChange}></input>
-                     <button type ="submit">Sign in</button>
-                  </form>
-                </div>
-            </div>
-        )
 
+    connect(e){
+        e.preventDefault();
+        let postData= {email: this.state.email, password: this.encodedPassword()};
+        login(postData).then(result=>{
+            this.props.onConnect(result.response);
+            window.location= "/home";
+        });
+    }
+
+    render() {
+      return (
+        <div className="row" style={{flexDirection:"column"}}>
+           <form style={{display:"flex", flexDirection:"column",
+                        alignSelf:"center", margin:"60px 0px"}}>
+                <input type="email" 
+                      name="email" 
+                      value={this.state.email}
+                      placeholder="email" 
+                      onChange={this.onChange.bind(this)}/>
+                <input type="password" 
+                      name="password" 
+                      value={this.state.password}
+                      placeholder="password" 
+                      onChange={this.onChange.bind(this)}/>
+                <button onClick={this.connect.bind(this)}>
+                    Login
+                </button>
+           </form>
+        </div>
+      );
     }
 }
-export default Login
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onConnect: data => 
+        
+        {dispatch(onConnect(data.user, data.token));}
+    };
+};
+export default connect(null, mapDispatchToProps)(Login);

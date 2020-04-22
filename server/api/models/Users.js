@@ -25,7 +25,8 @@ var UsersSchema = new Schema({
   },
   idGroups: {
     type: Schema.Types.ObjectId,
-    ref: "UserGroups"
+    ref: "UserGroups",
+    default: "5e9ff7031c9d440000db4ed0"
   },
 });
 module.exports = mongoose.model('Users', UsersSchema);

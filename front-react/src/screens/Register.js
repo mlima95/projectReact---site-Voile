@@ -31,7 +31,7 @@ class Register extends Component {
             Password: this.state.Password,
             Gender: this.state.Gender
         }
-        createRessource("users/register", user).then(res => {
+        createRessource("register", user).then(res => {
             window.location = "/login";
         })
     }
@@ -41,7 +41,8 @@ class Register extends Component {
                 <div className="row">
                     <form noValidate onSubmit={this.onSubmit}>
                         <label>Gender</label>
-                        <input type="text" name="Gender" placeholder="Enter genre" value={this.state.Gender} onChange={this.onChange}></input>
+                        <input type="radio" id="Gender" name="Gender" value="male" label="male" checked={this.state.Gender === 'male'} onChange={this.onChange} ></input>
+                        <input type="radio" id="Gender" name="Gender" value="female" label="female" checked={this.state.Gender === 'female'} onChange={this.onChange}></input>
                         <label>Firstname</label>
                         <input type="text" name="Firstname" placeholder="Enter firstname" value={this.state.Firstname} onChange={this.onChange}></input>
                         <label>Lastname</label>
