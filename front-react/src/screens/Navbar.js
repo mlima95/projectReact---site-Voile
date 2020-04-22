@@ -14,7 +14,7 @@ export default function Navbar(){
                     <Link to="/calendar">Calendar</Link>
                 </li>
                 <li>
-                    <Link to="/request">Requests</Link>
+                    <Link to="/listRequest">Requests</Link>
                 </li>
                 <div style={{float:"right"}}>
                 <li>

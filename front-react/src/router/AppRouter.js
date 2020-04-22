@@ -15,7 +15,7 @@ export default function AppRouter(props) {
                 <Route path='/login'>
                     <Login />
                 </Route>
-                <Route path='/request'>
+                <Route path='/listRequest'>
                     <Request />
                 </Route>
                 <Route path='/calendar'>
