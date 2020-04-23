@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "../screens/Home";
 import Navbar from "../screens/Navbar";
-import Calendar from "../screens/Calendar";
+import CalendarView from "../screens/Calendar";
 import Login from '../screens/Login';
 import FormRequest from '../components/FormRequest'
 import RequestPage from '../screens/RequestPage';
@@ -29,7 +29,7 @@ function AppRouter(props) {
                     <FormRequest />
                 </Route>
                 <Route path='/calendar'>
-                    <Calendar />
+                    <CalendarView />
                 </Route>
                 <Route path='/request/:id' children={<RequestPage/>}>
                     <RequestPage/>
