@@ -22,7 +22,7 @@ function AppRouter(props) {
                 <Route path='/register'>
                     <Register />
                 </Route>
-                <Route path='/request'>
+                <Route path='/listRequest'>
                     <Request />
                 </Route>
                 <Route path='/formRequest'>
