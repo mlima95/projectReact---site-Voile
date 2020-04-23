@@ -6,18 +6,23 @@ import Login from '../screens/Login';
 import FormRequest from '../components/FormRequest'
 import RequestPage from '../screens/RequestPage';
 import Request from '../screens/Request';
+import Register from '../screens/Register';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export default function AppRouter(props) {
+function AppRouter(props) {
 
     return (
         <Router>
-            <Navbar></Navbar>
+            <Navbar isLogin={props.user!==null}/>
             <Switch>
                 <Route path='/login'>
                     <Login />
                 </Route>
-                <Route path='/listRequest'>
+                <Route path='/register'>
+                    <Register />
+                </Route>
+                <Route path='/request'>
                     <Request />
                 </Route>
                 <Route path='/formRequest'>
@@ -36,3 +41,11 @@ export default function AppRouter(props) {
         </Router>
     );
 }
+const mapStateToProps = state => {
+    console.log(state.user.data)
+    return {
+        user: state.user.data 
+    }
+  };
+  
+  export default connect(mapStateToProps)(AppRouter);

@@ -1,9 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import '../css/navbar.css';
+import { disconnect } from '../store/actions/userActions';
+import {connect} from 'react-redux';
 
-
-export default function Navbar(){
+function Navbar(props){
     return(
         <nav>
             <ul>
@@ -20,11 +21,19 @@ export default function Navbar(){
                 <li>
                     <Link to="/login">Login</Link>
                 </li>
-                <li >
-                    <Link to="#">Logout</Link>
+                <li>
+                    <Link to="/register">Register</Link>
                 </li>
+                <li className="logout" onClick={()=>{props.disconnect(); window.location="/"}}>Logout</li>
                 </div>
             </ul>
         </nav>
     )
 }
+const mapDispatchToProps = dispatch => {
+    return {
+        disconnect:() => {dispatch(disconnect());}
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Navbar);
