@@ -41,7 +41,7 @@ export default class PostFullPage extends React.Component {
                         onHide={() => { this.setState({ displayForm: false }) }}
                     />
                 }
-                {this.state.aRequest &&
+                {this.state.aRequest && !this.state.displayForm&&
                     <div style={{ flexDirection: "column" }}>
                         <h2>{this.state.aRequest.title}</h2>
                         <h5>{this.state.aRequest.equipment}</h5>

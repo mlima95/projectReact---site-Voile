@@ -33,6 +33,9 @@ export default class Request extends React.Component {
                         data={item}>
                     </Listrequest>
                 })}
+                {this.state.request.length === 0 &&
+                    <Listrequest></Listrequest>
+                }
                 </div>
             </div>
         );

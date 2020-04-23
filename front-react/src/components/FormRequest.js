@@ -31,6 +31,7 @@ export default class FormRequest extends React.Component{
 
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
+        console.log(e.target.value);
     }
 
 
@@ -71,8 +72,8 @@ export default class FormRequest extends React.Component{
                         onChange={(value) => this.setState({ description: value })}>
                     </RichTextEditor>
                     <input name="nbPerson" value={this.state.nbPerson} onChange={this.onChange.bind(this)}></input>
-                    <input name="activityStart" type="datetime-local"  value={Moment(this.state.activityStart).format("LLL")} onChange={this.onChange.bind(this)}></input>
-                    <input name="activityEnd" type="datetime-local"  value={Moment(this.state.activityEnd).format("LLL")} onChange={this.onChange.bind(this)}></input>
+                    <input name="activityStart" type="datetime-local"  value={this.state.activityStart} onChange={this.onChange.bind(this)}></input>
+                    <input name="activityEnd" type="datetime-local"  value={this.state.activityEnd} onChange={this.onChange.bind(this)}></input>
                     <div style={{marginTop:10}}>
                         <button className="button" onClick={this.save.bind(this)}>Valider</button>
                         <button className="button" onClick={(e) => this.cancel(e)}>Annuler</button>

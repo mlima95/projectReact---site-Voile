@@ -7,6 +7,8 @@ let parse = require('html-react-parser');
 
 export default function Listrequest(props) {
     Moment.locale("fr");
+    console.log("je suis ici");
+    console.log(props.data);
     return (
         <div className="card">
             {console.log(props.data)}
