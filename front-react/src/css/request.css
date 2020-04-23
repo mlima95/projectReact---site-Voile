@@ -11,13 +11,14 @@
 
 .status{
     display: flex;
-    justify-content: flex-end;
-    width: 15%;
+    /* justify-content: flex-end; */
+    width: 30%;
+    flex-direction: column;
 }
 
 .dataTitle{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 50%;
 }
 

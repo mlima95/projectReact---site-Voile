@@ -8,3 +8,8 @@ body, #root {
     display: flex;
     padding: 20px;
 }
+.RichTextEditor__root___2QXK- {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}

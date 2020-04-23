@@ -12,6 +12,10 @@ export default class Request extends React.Component {
     }
 
     componentDidMount(){
+        this.refresh();
+    }
+
+    refresh(){
         getRessources("request").then(result => {
             this.setState({request:result});
         });
