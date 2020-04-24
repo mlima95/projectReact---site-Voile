@@ -87,8 +87,6 @@ eventStyleGetter(couleur) {
 
   render() {
     const localizer = momentLocalizer(moment);
-    
-
     if (this.state.request != null) {
       var color = "008080";
       this.state.request.forEach(aRequest => {
@@ -127,9 +125,7 @@ eventStyleGetter(couleur) {
           style={{ height: "100vh" }}
           scrollToTime={new Date(1970, 1, 1, 6)}
           onSelectEvent={event => alert(event.resource)}
-          onSelectSlot={this.handleSelect}
           defaultDate={moment().toDate()}
-          onEventDrop={this.onEventDrop}
           onDoubleClickEvent={this.onDoubleClickEvent}
           eventPropGetter={event => this.eventStyleGetter(event.hexColor)}
         />
