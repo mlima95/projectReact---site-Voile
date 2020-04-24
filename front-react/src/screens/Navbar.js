@@ -15,23 +15,23 @@ function Navbar(props) {
                 {props.isLogin ?
                     <div>
                         <li>
-                            <Link to="/calendar">Calendar</Link>
+                            <Link to="/calendar">Calendrier</Link>
                         </li>
                         <li>
-                            <Link to="/listRequest">Requests</Link>
+                            <Link to="/listRequest">Demandes</Link>
                         </li>
                         <div style={{float:"right"}}>
                             
-                            <li className="logout" onClick={() => { props.disconnect(); }}><Link to="/">Logout</Link></li>
+                            <li className="logout" onClick={() => { props.disconnect(); }}><Link to="/">Deconnexion</Link></li>
                         </div>
                     </div>
                     :
                     <div style={{ float: "right" }}>
                         <li>
-                                <Link to="/login">Login</Link>
+                                <Link to="/login">Connexion</Link>
                             </li>
                         <li>
-                            <Link to="/register">Register</Link>
+                            <Link to="/register">S'enregistrer</Link>
                         </li>
                     </div>
                 }

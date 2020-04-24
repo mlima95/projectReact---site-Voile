@@ -10,6 +10,7 @@ let parse = require('html-react-parser');
     constructor(props) {
         super(props);
         this.state = { aRequest: null, selectedRequest: null, displayForm: false,user:props.user }
+        // this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount() {
@@ -92,12 +93,12 @@ let parse = require('html-react-parser');
             <div className="cardDescription">
                 <div style={{ textAlign:"center",padding:"10px"}}>
                     <h2>{this.state.aRequest.title}</h2>
-                    <h5>Equipment : {this.state.aRequest.equipment}</h5>
+                    <h5>Equipement : {this.state.aRequest.equipment}</h5>
                     <h5>Nombre de personne : {this.state.aRequest.nbPerson}</h5>
                     <h5>{Moment(this.state.aRequest.activityStart).format('L LT')} - {Moment(this.state.aRequest.activityEnd).format('L LT')}</h5>
                     {/* <h5>Status : {this.state.aRequest.status}</h5> */}
                     <select name="status" value={this.state.aRequest.status ? this.state.aRequest.status:"undefined"} onChange={this.onChange.bind(this)}>
-                    <option value="">--Please choose an option--</option>
+                    <option value="">--Veuillez choisir une option--</option>
                         <option value="En cours">En cours</option>
                         <option value="Accepté">Accepté</option>
                         <option value="Refusé">Refusé</option>

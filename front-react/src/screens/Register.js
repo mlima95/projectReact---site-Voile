@@ -43,27 +43,27 @@ class Register extends Component {
                             display: "flex", flexDirection: "column",
                             alignSelf: "center",marginLeft:"20px",marginRight:"20px"
                         }}>
-                        <label>Gender</label>
+                        <label>Sexe</label>
                         {/* <input type="radio" id="Gender" name="Gender" value="male" label="male" checked={this.state.Gender === 'male'} onChange={this.onChange} ></input>
                         <input type="radio" id="Gender" name="Gender" value="female" label="female" checked={this.state.Gender === 'female'} onChange={this.onChange}></input> */}
                         <select className="inputLogin" name="Gender" value={this.state.Gender ? this.state.Gender:"undefined"} onChange={this.onChange}>
-                    <option value="">--Please choose an option--</option>
+                    <option value="">--Veuillez choisir une option--</option>
                         <option value="male">Homme</option>
                         <option value="female">Femme</option>
                     </select>
-                        <label>Firstname</label>
-                        <input className="inputLogin" type="text" name="Firstname" placeholder="Enter firstname" value={this.state.Firstname} onChange={this.onChange}></input>
-                        <label>Lastname</label>
-                        <input className="inputLogin" type="text" name="Lastname" placeholder="Enter lastname" value={this.state.Lastname} onChange={this.onChange}></input>
-                        <label>Number</label>
-                        <input className="inputLogin" type="text" name="Number" placeholder="Enter number" value={this.state.Number} onChange={this.onChange}></input>
-                        <label>Birthday</label>
+                        <label>Prénom</label>
+                        <input className="inputLogin" type="text" name="Firstname" placeholder="Entrez votre prénom" value={this.state.Firstname} onChange={this.onChange}></input>
+                        <label>Nom de Famille</label>
+                        <input className="inputLogin" type="text" name="Lastname" placeholder="Entrez votre nom de famille" value={this.state.Lastname} onChange={this.onChange}></input>
+                        <label>Numéro</label>
+                        <input className="inputLogin" type="text" name="Number" placeholder="Entrez votre numéro" value={this.state.Number} onChange={this.onChange}></input>
+                        <label>Date de naissance</label>
                         <input className="inputLogin" type="Date" name="Birthday" value={this.state.Birthday} onChange={this.onChange}></input>
                         <label>Email</label>
-                        <input className="inputLogin" type="email" name="Email" placeholder="Enter email" value={this.state.email} onChange={this.onChange}></input>
-                        <label>Password</label>
-                        <input className="inputLogin" type="password" name="Password" placeholder="Enter password" value={this.state.Password} onChange={this.onChange}></input>
-                        <button className="btnLogin" type="submit">Sign up</button>
+                        <input className="inputLogin" type="email" name="Email" placeholder="Entrez votre email" value={this.state.email} onChange={this.onChange}></input>
+                        <label>Mot de passe</label>
+                        <input className="inputLogin" type="password" name="Password" placeholder="Entrez mot de passe " value={this.state.Password} onChange={this.onChange}></input>
+                        <button className="btnLogin" type="submit">S'inscrire</button>
                     </form>
                 </div>
             </div>

@@ -69,7 +69,7 @@ class FormRequest extends React.Component{
                     <input name="title" value={this.state.title} onChange={this.onChange.bind(this)}>
                     </input>
                     <select name="equipment" value={this.state.equipment ? this.state.equipment:"undefined"} onChange={this.onChange.bind(this)}>
-                    <option value="">--Please choose an option--</option>
+                    <option value="">--Veuillez choisir une option--</option>
                         <option value="Voile">Voile</option>
                         <option value="Catamaran">Catamaran</option>
                         <option value="Paddle">Paddle</option>
