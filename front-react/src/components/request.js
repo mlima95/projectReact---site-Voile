@@ -5,34 +5,44 @@ import '../css/request.css';
 
 let parse = require('html-react-parser');
 
-export default function Listrequest(props) {
+export default class Listrequest extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={aRequest:this.props.data}
+    }
+
+    componentDidMount(){
+        if(this.state.aRequest){
+            this.setState({newRequest:true});
+        }
+    }
+
+    render(){
     Moment.locale("fr");
-    console.log("je suis ici");
-    console.log(props.data);
     return (
+        
         <div className="card">
-            {console.log(props.data)}
-            {props.data ?
+            {this.state.aRequest ?
             <div style={{ flexDirection: "row", display: "flex", width: "100%" }}>
                 <div className="dataTitle">
-                    <h3>{props.data.title}</h3>
-                    <h5 style={{ marginTop: "2px" }}>{Moment(props.data.activityStart).format('L LT')} - {Moment(props.data.activityEnd).format('L LT')}</h5>
+                    <h3>{this.state.aRequest.title}</h3>
+                    <h5 style={{ marginTop: "2px" }}>{Moment(this.state.aRequest.activityStart).format('L LT')} - {Moment(this.state.aRequest.activityEnd).format('L LT')}</h5>
                 </div>
                 <div style={{ width: '50%' }}>
-                    <h5 style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>{props.data.equipment}</h5>
+                    <h5 style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>{this.state.aRequest.equipment}</h5>
                 </div>
                 <div className="status">
-                    {props.data.status == "En cours" &&
-                        <h5 style={{ color: "orange", display: "flex", justifyContent: "flex-end" }}>{props.data.status}</h5>
+                    {this.state.aRequest.status == "En cours" &&
+                        <h5 style={{ color: "orange", display: "flex", justifyContent: "flex-end" }}>{this.state.aRequest.status}</h5>
                     }
 
-                    {props.data.status == "Accepté" &&
-                        <h5 style={{ color: "green", display: "flex", justifyContent: "flex-end" }}>{props.data.status}</h5>
+                    {this.state.aRequest.status == "Accepté" &&
+                        <h5 style={{ color: "green", display: "flex", justifyContent: "flex-end" }}>{this.state.aRequest.status}</h5>
                     }
-                    {props.data.status == "Refusé" &&
-                        <h5 style={{ color: "red", display: "flex", justifyContent: "flex-end" }}>{props.data.status}</h5>
+                    {this.state.aRequest.status == "Refusé" &&
+                        <h5 style={{ color: "red", display: "flex", justifyContent: "flex-end" }}>{this.state.aRequest.status}</h5>
                     }
-                    <a style={{ fontSize: "small", display: "flex", justifyContent: "flex-end" }} href={`/request/${props.data._id}`}>Demande détaillée</a>
+                    <a style={{ fontSize: "small", display: "flex", justifyContent: "flex-end" }} href={`/request/${this.state.aRequest._id}`}>Demande détaillée</a>
                 </div>
             </div>
             :
@@ -41,6 +51,6 @@ export default function Listrequest(props) {
             </div>
 }
         </div>
-
     );
+}
 }
