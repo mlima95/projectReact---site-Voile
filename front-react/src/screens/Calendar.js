@@ -5,6 +5,8 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import 'moment/locale/fr'
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import {getRessources} from '../services/api_services';
+let parse = require('html-react-parser');
 
 moment.locale('fr');
 const DnDCalendar = withDragAndDrop(Calendar);
@@ -14,17 +16,31 @@ export default class CalendarView extends React.Component{
   constructor(...args) {
     super(...args)
     this.state = {
+      request: [],
       events: [
-        {
-          start: moment().toDate(),
-          end: moment()
-            .add(1, "days")
-            .toDate(),
-          title: "Some title"
-        }
-      ]
+      ],
+      test:[]
     };
+    this.onEventDrop = this.onEventDrop.bind(this);
+    this.eventStyleGetter = this.eventStyleGetter.bind(this);
+
+  getRessources("request").then(result => {
+      this.setState({request:result});
+  });
+
+  console.log(this.state.request);
+  console.log("test");
+  console.log(this.state.events);
   }
+
+
+  refresh(){
+    getRessources("request").then(result => {
+      this.setState({request:result});
+      console.log("coucou" + this.state.request);
+
+  });
+}
 
   handleSelect = ({ start, end }) => {
     const title = window.prompt('New Event name')
@@ -41,43 +57,83 @@ export default class CalendarView extends React.Component{
       })
   }
 
-  /*onDoubleClickEvent = ({ event }) => {
-    if (event != null) {
-      console.log(this.state.events[0].title);
 
-    } else {
-      console.log("no event");
-    }
 
-  }*/
+  onEventDrop({ event, start, end}) {
+    const { events } = this.state;
+    const idx = events.indexOf(event);
 
-  onEventDrop = ({ event, start, end, allDay }) => {
-    console.log(event.start + "okd");
-    this.setState(state => {
-      state.events[0].start = start;
-      state.events[0].end = end;
-      return { events: state.events };
-    });
+    const updatedEvent = { ...event, start, end }
+    const nextEvents = [...events]
+    nextEvents.splice(idx, 1, updatedEvent)
+    this.setState({
+      events : nextEvents,
+    })
+}
+eventStyleGetter(couleur) {
+
+//  var couleur = event.hexColor;
+  if (couleur == null) {
+    console.log("tamere")
+  }
+  var backgroundColor = '#' + couleur;
+  var style = {
+      backgroundColor: backgroundColor
   };
+  return {
+      style: style
+  };
+}
 
   render() {
     const localizer = momentLocalizer(moment);
+    
+
+    if (this.state.request != null) {
+      var color = "008080";
+      this.state.request.forEach(aRequest => {
+        switch (aRequest.status) {
+          case "En cours":
+            color = "FFA500";
+            break;
+          case "Accepté":
+            color = "008000";
+            break;
+          case "Refusé":
+            color = "FF0000";
+            break;
+          default:
+            color = "008080"
+            break;
+        }
+        this.state.events.push({
+          start: new Date(aRequest.activityStart),
+          end: new Date(aRequest.activityEnd),
+          title: aRequest.title,
+          resource: aRequest.description.substr(3, aRequest.description.length-7),
+          hexColor: color
+        })
+      });
+    }
+
 
     return (
+      <div>
         <DnDCalendar
           selectable
           localizer={localizer}
           events={this.state.events}
           defaultView={Views.WEEK}
+          style={{ height: "100vh" }}
           scrollToTime={new Date(1970, 1, 1, 6)}
-          defaultDate={new Date(2015, 3, 12)}
-          onSelectEvent={event => alert(event.title)}
+          onSelectEvent={event => alert(event.resource)}
           onSelectSlot={this.handleSelect}
           defaultDate={moment().toDate()}
           onEventDrop={this.onEventDrop}
-          style={{ height: "100vh" }}
           onDoubleClickEvent={this.onDoubleClickEvent}
+          eventPropGetter={event => this.eventStyleGetter(event.hexColor)}
         />
+        </div>
     );
   }
 }
