@@ -1,7 +1,7 @@
 import { retrieveData, USERDATA } from "../../services/localStorage";
 
 let INITIAL_STATE = {
-    data: (retrieveData(USERDATA)? retrieveData(USERDATA) : null),
+    data: (retrieveData(USERDATA)? JSON.parse(retrieveData(USERDATA)) : null),
 };
 
 let userReducer = (state = INITIAL_STATE, action) => {

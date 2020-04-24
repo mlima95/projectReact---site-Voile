@@ -1,6 +1,22 @@
 import React from "react";
+import { connect } from 'react-redux';
+import {getRessources} from '../services/api_services';
 
-export default class Home extends React.Component{
+class Home extends React.Component{
+
+constructor(props){
+    super(props);
+    // console.log(props.user._id);
+    // this.state={user:props.user._id};
+}
+
+
+    componentDidMount(){
+        getRessources("listRequest").then(result => {
+            this.setState({request:result});
+            console.log(result);
+        });
+    }
     render(){
         return(
             <div>
@@ -9,3 +25,12 @@ export default class Home extends React.Component{
         );
     }
 }
+
+const mapStateToProps = state => {
+    console.log(state.user.data)
+    return {
+        user: state.user.data 
+    }
+  };
+  
+  export default connect(mapStateToProps)(Home);

@@ -13,6 +13,19 @@ exports.list_all_requests = function (req, res) {
     });
 };
 
+exports.list_all_requestsUser = function (req,res) {
+    Request.find({}).where("user","5ea1f79fa8fa771db09c329e").exec(
+    (function(err,requestUser){
+        if (err){
+            res.send(err);
+        }else{
+            console.log(requestUser);
+            res.json(requestUser);
+        }
+    })
+    );
+}
+
 exports.read_a_request = function (req, res) {
     Request.findById(req.params.requestId, function (err, request) {
         if (err) {

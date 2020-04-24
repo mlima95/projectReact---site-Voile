@@ -2,19 +2,22 @@ import React from 'react';
 import Moment from 'moment';
 import 'moment/locale/fr'
 import RichTextEditor from 'react-rte';
+import { connect } from 'react-redux';
 import { updateRessource, createRessource, deleteRessource, getRessource,getRessources } from '../services/api_services';
 
-export default class FormRequest extends React.Component{
+class FormRequest extends React.Component{
     constructor(props){
         super(props);
         if(props.data){
-            console.log(props.data);
             this.state= Object.assign({},props.data);
             this.state.description = RichTextEditor.createValueFromString(this.state.description,'html');
             console.log(this.state);
         }else{
-            this.state = { title: "", description: RichTextEditor.createEmptyValue(),equipment:"",nbPerson:0,activityStart:null,activityEnd:null,status:"En cours"};
+            this.state = { title: "", description: RichTextEditor.createEmptyValue(),equipment:"",nbPerson:0,activityStart:null,activityEnd:null,status:"En cours",user:props.user._id};
         }
+    }
+
+    componentDidMount(){
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -65,8 +68,12 @@ export default class FormRequest extends React.Component{
                 <div style={{ flexDirection: "column", display: "flex", flex: 1 }}>
                     <input name="title" value={this.state.title} onChange={this.onChange.bind(this)}>
                     </input>
-                    <input name="equipment" value={this.state.equipment} onChange={this.onChange.bind(this)}>
-                    </input>
+                    <select name="equipment" value={this.state.equipment ? this.state.equipment:"undefined"} onChange={this.onChange.bind(this)}>
+                    <option value="">--Please choose an option--</option>
+                        <option value="Voile">Voile</option>
+                        <option value="Catamaran">Catamaran</option>
+                        <option value="Paddle">Paddle</option>
+                    </select>
                     {/* {console.log(this.state.description)} */}
                     <RichTextEditor name="description" style={{ flex: 1 }} value={this.state.description}
                         onChange={(value) => this.setState({ description: value })}>
@@ -85,3 +92,12 @@ export default class FormRequest extends React.Component{
 
 
 }
+
+const mapStateToProps = state => {
+    console.log(state.user.data)
+    return {
+        user: state.user.data 
+    }
+  };
+  
+  export default connect(mapStateToProps)(FormRequest);
