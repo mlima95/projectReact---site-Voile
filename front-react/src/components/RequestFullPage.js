@@ -45,12 +45,12 @@ export default class PostFullPage extends React.Component {
             <div className="cardDescription">
                 <div style={{ textAlign:"center",padding:"10px"}}>
                     <h2>{this.state.aRequest.title}</h2>
-                    <h5>{this.state.aRequest.equipment}</h5>
-                    <h5>{this.state.aRequest.nbPerson}</h5>
+                    <h5>Equipment : {this.state.aRequest.equipment}</h5>
+                    <h5>Nombre de personne : {this.state.aRequest.nbPerson}</h5>
                     <h5>{Moment(this.state.aRequest.activityStart).format('L LT')} - {Moment(this.state.aRequest.activityEnd).format('L LT')}</h5>
-                    <h5>{this.state.aRequest.status}</h5>
+                    <h5>Status : {this.state.aRequest.status}</h5>
                     <h2>{this.state.aRequest.statusReply}</h2>
-                    {parse(this.state.aRequest.description)}
+                    Description : {parse(this.state.aRequest.description)}
                     <div>
                         <button className="btnFullPage" onClick={() => {
                             this.setState({ selectedRequest: this.state.aRequest, displayForm: true });

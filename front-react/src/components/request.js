@@ -17,11 +17,12 @@ export default function Listrequest(props) {
                         <h5 style={{ marginTop: "2px" }}>{Moment(props.data.activityStart).format('L LT')} - {Moment(props.data.activityEnd).format('L LT')}</h5>
                     </div>
                     <div style={{ width: '50%' }}>
-                        <h5 style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>{props.data.equipment}</h5>
+                    
+                        <h5 style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>Equipement : {props.data.equipment}</h5>
                     </div>
                     <div className="status">
                         {props.data.status == "En cours" &&
-                            <h5 style={{ color: "orange", display: "flex", justifyContent: "flex-end" }}>{props.data.status}</h5>
+                            <h5 style={{ color: "orange", display: "flex", justifyContent: "flex-end" }}>Status : {props.data.status}</h5>
                         }
 
                         {props.data.status == "Accepté" &&
@@ -30,7 +31,7 @@ export default function Listrequest(props) {
                         {props.data.status == "Refusé" &&
                             <h5 style={{ color: "red", display: "flex", justifyContent: "flex-end" }}>{props.data.status}</h5>
                         }
-                        <a style={{ fontSize: "small", display: "flex", justifyContent: "flex-end" }} href={`/request/${props.data._id}`}>Demande détaillée</a>
+                        <button className="btnItem"><a  className="linkItem"  href={`/request/${props.data._id}`}>Demande détaillée</a></button>
                     </div>
                 </div>
                 :

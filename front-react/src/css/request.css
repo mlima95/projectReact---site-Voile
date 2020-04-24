@@ -24,17 +24,49 @@
     display: flex;
     justify-content: flex-end;
     text-decoration: none;
-    color: black;
-    border-radius:3px;
-    margin: 0;
-    padding:5px;
-    background: lightblue;
-    text-align: center;
+    color: white;
+   
 }
 
-.linkItem:hover{
-    color: white;
+
+.btnItem{
+    border: none;
+	background: #3a7999;
+	color: #f2f2f2;
+    padding: 10px;
+    font-size: small;
+    display: flex;
+    justify-content: flex-end;
+	font-size: 18px;
+	border-radius: 5px;
+	position: relative;
+	box-sizing: border-box;
+	transition: all 100ms ease; 
 }
+
+
+.inputLogin{
+    width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btnLogin{
+    border: none;
+	background: #3a7999;
+	color: #f2f2f2;
+    padding: 10px;
+	font-size: 18px;
+	border-radius: 5px;
+	position: relative;
+	box-sizing: border-box;
+	transition: all 100ms ease; 
+}
+
 
 .btnFullPage{
     border: none;
