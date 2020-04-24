@@ -7,8 +7,6 @@ let parse = require('html-react-parser');
 
 export default function Listrequest(props) {
     Moment.locale("fr");
-    console.log("je suis ici");
-    console.log(props.data);
     return (
         <div className="card">
             {console.log(props.data)}
@@ -37,7 +35,7 @@ export default function Listrequest(props) {
             </div>
             :
             <div><h3>Besoin de faire une nouvelle demande ?</h3>
-                <button onClick={()=> window.location="/formRequest"}>Nouvelle demande</button>
+                <button className="btnFullPage" onClick={()=> window.location="/formRequest"}>Nouvelle demande</button>
             </div>
 }
         </div>

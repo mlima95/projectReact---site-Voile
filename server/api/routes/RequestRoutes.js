@@ -7,6 +7,10 @@ module.exports = function(app){
     .get(requestController.list_all_requests)
     .post(requestController.create_a_request);
 
+    app.route('/listRequest')
+    .get(requestController.list_all_requestsUser)
+    .post(requestController.create_a_request);
+
     app.route('/request/:requestId')
     .get(requestController.read_a_request)
     .put(requestController.update_a_request)

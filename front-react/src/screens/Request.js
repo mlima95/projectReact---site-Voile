@@ -16,8 +16,9 @@ export default class Request extends React.Component {
     }
 
     refresh(){
-        getRessources("request").then(result => {
+        getRessources("listRequest").then(result => {
             this.setState({request:result});
+            console.log(result);
         });
     }
 
@@ -27,6 +28,11 @@ export default class Request extends React.Component {
         return (
             <div className="row">
                 <div style={{justifyContent:"center",alignItems:"center"}}>
+                <div style={{marginBottom:"10px"}}>
+                    {this.state.request.length > 0 &&
+                <button className="btnFullPage" onClick={()=> window.location="/formRequest"}>Nouvelle demande</button>
+            }
+                </div>
                 {this.state.request.map((item,index)=>{
                     return <Listrequest
                         key={index}
